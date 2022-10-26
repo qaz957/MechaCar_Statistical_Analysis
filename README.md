@@ -14,3 +14,59 @@ Here we see that the intercept, vehicle length and ground clearance will most li
 ![lot_summary](https://user-images.githubusercontent.com/108296899/198046357-1baae0e4-d008-49a8-96ff-dbb0ad8b36ab.png)
 
 The allowable variance for the suspension coils is 100psi. We can see for the total data, this is met with a variance of 62.29. However, when we look into the individual lot data, we can see that lot 3 does not meet this parameter with a variance of 170.28. We need to do some inspecting of these pieces to see what is causing this.
+
+## T-Tests on Suspension Coils
+
+    > t.test(suspension_coil$PSI,mu=mean(suspension_coil$PSI))
+
+      One Sample t-test
+
+    data:  suspension_coil$PSI
+    t = 0, df = 149, p-value = 1
+    alternative hypothesis: true mean is not equal to 1498.78
+    95 percent confidence interval:
+     1497.507 1500.053
+    sample estimates:
+    mean of x 
+      1498.78
+
+    > t.test(subset(suspension_coil$PSI,suspension_coil$Manufacturing_Lot == "Lot1"),mu=mean(suspension_coil$PSI))
+
+      One Sample t-test
+
+    data:  subset(suspension_coil$PSI, suspension_coil$Manufacturing_Lot == "Lot1")
+    t = 8.7161, df = 49, p-value = 1.568e-11
+    alternative hypothesis: true mean is not equal to 1498.78
+    95 percent confidence interval:
+     1499.719 1500.281
+    sample estimates:
+    mean of x 
+         1500 
+
+    > t.test(subset(suspension_coil$PSI,suspension_coil$Manufacturing_Lot == "Lot2"),mu=mean(suspension_coil$PSI))
+
+      One Sample t-test
+
+    data:  subset(suspension_coil$PSI, suspension_coil$Manufacturing_Lot == "Lot2")
+    t = 3.6739, df = 49, p-value = 0.0005911
+    alternative hypothesis: true mean is not equal to 1498.78
+    95 percent confidence interval:
+     1499.423 1500.977
+    sample estimates:
+    mean of x 
+       1500.2 
+
+    > t.test(subset(suspension_coil$PSI,suspension_coil$Manufacturing_Lot == "Lot3"),mu=mean(suspension_coil$PSI))
+
+      One Sample t-test
+
+    data:  subset(suspension_coil$PSI, suspension_coil$Manufacturing_Lot == "Lot3")
+    t = -1.4305, df = 49, p-value = 0.1589
+    alternative hypothesis: true mean is not equal to 1498.78
+    95 percent confidence interval:
+     1492.431 1499.849
+    sample estimates:
+    mean of x 
+      1496.14
+
+The p-value for the total sample is =1. Meaning that there is mathematical certainty that thse results ocured by chance.  We can see by the individual results from each lot that Lot3 is heavily affecting the reliability of the data, with a 15% probability of chance.
