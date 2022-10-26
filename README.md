@@ -27,7 +27,7 @@ The allowable variance for the suspension coils is 100psi. We can see for the to
     95 percent confidence interval:
      1497.507 1500.053
     sample estimates:
-    mean of x 
+    mean of x
       1498.78
 
     > t.test(subset(suspension_coil$PSI,suspension_coil$Manufacturing_Lot == "Lot1"),mu=mean(suspension_coil$PSI))
@@ -70,3 +70,12 @@ The allowable variance for the suspension coils is 100psi. We can see for the to
       1496.14
 
 The p-value for the total sample is =1. Meaning that there is mathematical certainty that thse results ocured by chance.  We can see by the individual results from each lot that Lot3 is heavily affecting the reliability of the data, with a 15% probability of chance.
+
+## Study Design: MechaCar vs Competition
+
+In this study we want to compare the MechaCar's cost, city fiel efficiency and maintenance cost to it's competitor. The goal is to the create data that can be used to compare the car's viability as a city cruiser. We will be analyziing these metrics on their differences to similar models from other manufacturers.
+
+- Null Hypothesis: The MechaCar is statistically similar to it's competing models and should be compared to the existing market.
+- Alt. Hypothesis: The MechaCar is statistically different to it's competing models and should be used in other markets.
+
+We can run a two-sample T-test on these metrics to see if there is statistical similarity bewteen models in the city-cruiser market. We would need to collect data on the fuel efficiency of the most popular models being used by city-dwelling car owners and maintenance cost data to see what we should be aiming for as "city miles" are known to be harder on a car.
